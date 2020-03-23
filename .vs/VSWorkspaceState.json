@@ -6,6 +6,6 @@
     "\\blog\\templates\\blog",
     "\\mysite"
   ],
-  "SelectedNode": "\\mysite\\__init__.py",
+  "SelectedNode": "\\blog\\templates\\blog\\post_list.html",
   "PreviewInSolutionExplorer": false
 }
