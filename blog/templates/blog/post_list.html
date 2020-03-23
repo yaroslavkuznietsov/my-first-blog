@@ -1,12 +1,11 @@
 <html>
 <head>
-    <title>Django Y Blog</title>
+    <title>Django Big Cats Blog</title>
 </head>
 <body>
     <div>
         <h1><a href="/">Django Y Blog</a></h1>
     </div>
-    {{posts}}   <br />
 
     {% for post in posts %}
         <div>
@@ -15,5 +14,6 @@
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
+
 </body>
 </html>
