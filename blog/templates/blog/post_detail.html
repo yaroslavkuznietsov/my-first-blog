@@ -2,29 +2,32 @@
 {% load static %}
 
 <html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <title>Django Big Cats Blog</title>
-    </head>
-    <body>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <title>Django Big Cats Blog</title>
+</head>
+<body>
 
-        <div class="page-header">
-            <h1><a href="/"><i>Django Big Cats Blog </i></a></h1>
+    <div class="page-header">
+        <h1><a href="/"><i>Django Big Cats Blog </i></a></h1>
+    </div>
+    {% block content %}
+    <div class="post">
+        {% if post.published_date %}
+        <div class="date">
+            {{ post.published_date }}
         </div>
-        {% block content %}
-            <div class="post">
-                {% if post.published_date %}
-                    <div class="date">
-                        {{ post.published_date }}
-                    </div>
-                {% endif %}
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-        {% endblock %}
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endblock %}
 
-    </body>
+</body>
 </html>

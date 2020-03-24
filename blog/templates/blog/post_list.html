@@ -2,29 +2,29 @@
 {% load static %}
 
 <html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <title>Django Big Cats Blog</title>
-    </head>
-    <body>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <title>Django Big Cats Blog</title>
+</head>
+<body>
 
-        <div class="page-header">
-            <h1><a href="/"><i>Django Big Cats Blog </i></a></h1>
+    <div class="page-header">
+        <h1><a href="/"><i>Django Big Cats Blog </i></a></h1>
+    </div>
+    {% block content %}
+    {% for post in posts %}
+    <div class="post">
+        <div class="date">
+            <p>published: <i><b>{{ post.published_date }}</b></i></p>
         </div>
-        {% block content %}
-            {% for post in posts %}
-            <div class="post">
-                <div class="date">
-                    <p>published: <i><b>{{ post.published_date }}</b></i></p>
-                </div>
-                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </div>
-            {% endfor %}
-        {% endblock %}
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+    {% endblock %}
 
-    </body>
+</body>
 </html>
